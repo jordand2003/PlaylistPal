@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* styles.css */
+
+.app {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .title {
+    text-align: center;
+  }
+
+  .desc{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  
+    button, a {
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background: #1DB954;
+    color: white;
+    font-size: 16px;
+  }
+
+  .log{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .song-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .subtitle{
+    font-size: 30px;
+    text-decoration: underline;
+  }
+  
+  .single-song {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    padding: 10px;
+    background: #f8f8f8;
+  }
+  
+.song-title{
+    padding-left: 30px;
+}
+.album-cover{
+    display: flex;
+    height: 100px;
+}
