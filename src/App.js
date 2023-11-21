@@ -263,6 +263,8 @@ const App = () => {
       fetchRecentlyPlayed();
       console.log(topShortArtists);
       fetchTopShortArtists();
+      console.log(topTracks);
+      fetchArtistsTopTracks();
     }
   }, [token]);
 
@@ -373,7 +375,14 @@ const App = () => {
         )}
       </div>
       {token ? (
-        <button onClick={createPlaylist}>Create playlist!</button>
+        <div>
+          <p className="create-playlist-desc">
+            Click this button to create a custom playlist based on your top
+            listened to artists over the past 3 months! This will affect your
+            real Spotify account.
+          </p>
+          <button onClick={createPlaylist}>Create playlist!</button>
+        </div>
       ) : (
         <p></p>
       )}
