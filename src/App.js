@@ -8,13 +8,16 @@ const App = () => {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
   const RESPONSE_TYPE = "token";
-  const SCOPE = "user-read-recently-played user-top-read";
+  const SCOPE =
+    "user-read-recently-played user-top-read playlist-modify-public playlist-modify-private";
 
   const [token, setToken] = useState("");
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
   const [topShortArtists, setTopShortArtists] = useState([]);
   const [topMediumArtists, setTopMediumArtists] = useState([]);
   const [topLongArtists, setTopLongArtists] = useState([]);
+  const [topTracks, setTopTracks] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -39,7 +42,6 @@ const App = () => {
 
       setToken(newToken);
     } else {
-      // Check if there's a stored token
       const storedToken = window.localStorage.getItem("token");
       const expiresIn = window.localStorage.getItem("expiresIn");
 
@@ -47,11 +49,9 @@ const App = () => {
         const expirationTime = new Date(Number(expiresIn));
         const currentTime = new Date();
 
-        // If the token is still valid, set it in the state
         if (expirationTime > currentTime) {
           setToken(storedToken);
         } else {
-          // If the token has expired, refresh it
           refreshAccessToken();
         }
       }
@@ -171,6 +171,92 @@ const App = () => {
     }
   };
 
+  const fetchArtistsTopTracks = async () => {
+    try {
+      const tracks = [];
+
+      for (let i = 0; i < topShortArtists.length; i++) {
+        const response = await axios.get(
+          `https://api.spotify.com/v1/artists/${topShortArtists[i].id}/top-tracks`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: {
+              country: "US",
+            },
+          }
+        );
+
+        tracks.push(...response.data.tracks);
+      }
+      setTopTracks(tracks);
+      console.log(topTracks);
+    } catch (error) {
+      console.error("Error fetching artists top tracks:", error);
+    }
+  };
+
+  const createPlaylist = async () => {
+    try {
+      const profileResponse = await axios.get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const userId = profileResponse.data.id;
+      setUser(profileResponse.data);
+
+      console.log("Creating playlist...");
+
+      const createPlaylistResponse = await axios.post(
+        `https://api.spotify.com/v1/users/${userId}/playlists`,
+        {
+          name: "Custom Playlist",
+          public: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(
+        "Create Playlist Response Status:",
+        createPlaylistResponse.status
+      );
+      console.log(
+        "Create Playlist Response Data:",
+        createPlaylistResponse.data
+      );
+
+      const playlistId = createPlaylistResponse.data.id;
+
+      const addTracksResponse = await axios.post(
+        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+        {
+          uris: topTracks.map((track) => track.uri),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Add Tracks Response Status:", addTracksResponse.status);
+      console.log("Add Tracks Response Data:", addTracksResponse.data);
+
+      console.log("Playlist created and tracks added:", addTracksResponse.data);
+    } catch (error) {
+      console.error("Error creating custom playlist:", error);
+    }
+  };
+
   useEffect(() => {
     if (token) {
       console.log(recentlyPlayed);
@@ -286,6 +372,11 @@ const App = () => {
           <p></p>
         )}
       </div>
+      {token ? (
+        <button onClick={createPlaylist}>Create playlist!</button>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 };
