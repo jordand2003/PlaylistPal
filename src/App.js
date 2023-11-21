@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const App = () => {
+export default function App() {
   const CLIENT_ID = "63364e9f707f4451b254e9de4459c7b4";
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -263,6 +263,10 @@ const App = () => {
       fetchRecentlyPlayed();
       console.log(topShortArtists);
       fetchTopShortArtists();
+      console.log(topMediumArtists);
+      fetchTopMediumArtists();
+      console.log(topLongArtists);
+      fetchTopLongArtists();
       console.log(topTracks);
       fetchArtistsTopTracks();
     }
@@ -302,6 +306,7 @@ const App = () => {
                 <img
                   className="album-cover"
                   src={song.track.album.images[0].url}
+                  alt=""
                 />
                 <h2 className="song-title">{song.track.name}</h2>
               </li>
@@ -393,6 +398,4 @@ const App = () => {
       )}
     </div>
   );
-};
-
-export default App;
+}
