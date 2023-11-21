@@ -13,6 +13,18 @@
 
 .title {
   text-align: center;
+  margin-right: auto;
+  padding: 15px;
+}
+
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    margin-top: 20px;
+    padding: 15px 0 15px 0;
+    border-radius: 10px;
 }
 
 .desc {
@@ -20,13 +32,14 @@
   justify-content: center;
   text-align: center;
   text-decoration: none;
-  margin-top: 20px; /* Increased the margin-top */
+  margin-top: 20px;
   font-size: 20px;
 }
 
-button,
-a {
-  padding: 10px;
+.log, a {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
   margin: 10px;
   cursor: pointer;
   border-radius: 5px;
@@ -34,11 +47,7 @@ a {
   background: #1DB954;
   color: white;
   font-size: 16px;
-}
-
-.log {
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .song-list {
@@ -46,14 +55,15 @@ a {
   grid-template-columns: repeat(2, 1fr);
   list-style: none;
   padding: 0;
-  gap: 20px; /* Added gap property for even space between song elements */
+  gap: 20px;
 }
 
 .subtitle {
   display: flex;
   font-size: 30px;
   text-decoration: underline;
-  margin-top: 20px; /* Added margin-top for a bit of a gap above the subtitles */
+  margin-top: 20px;
+  color: #1DB954;
 }
 
 .single-song {
@@ -73,4 +83,41 @@ a {
 .album-cover {
   display: flex;
   height: 100px;
+}
+
+.time-frame{
+  display: flex;
+  font-size: 23px;
+  margin-top: 20px; 
+  text-decoration: none;
+}
+
+.playlist-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  margin-top: 20px;
+  padding: 15px 0 15px 0;
+  border-radius: 10px;
+}
+
+.create-playlist-desc {
+  width: 500px;
+  font-size: 17px;
+  margin-right: auto;
+  padding: 15px;
+}
+
+.create-playlist {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background: #1DB954;
+  color: white;
+  font-size: 16px;
 }

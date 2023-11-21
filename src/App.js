@@ -270,25 +270,28 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1 className="title">Playlist Buddy!</h1>
-      {!token && (
-        <p className="desc">
-          Please connect your spotify account to access features such as viewing
-          your recntly played songs, top artists, and custom created playlists!
-        </p>
-      )}
-      {!token ? (
-        <a
-          className="log"
-          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}
-        >
-          Login to Spotify
-        </a>
-      ) : (
-        <button className="log" onClick={logout}>
-          Logout
-        </button>
-      )}
+      <div className="nav">
+        <h1 className="title">Playlist Buddy!</h1>
+        {!token && (
+          <p className="desc">
+            Please connect your spotify account to access features such as
+            viewing your recntly played songs, top artists, and custom created
+            playlists!
+          </p>
+        )}
+        {!token ? (
+          <a
+            className="log"
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}
+          >
+            Login to Spotify
+          </a>
+        ) : (
+          <button className="log" onClick={logout}>
+            Logout
+          </button>
+        )}
+      </div>
 
       {token ? (
         <ul className="song-list">
@@ -309,10 +312,10 @@ const App = () => {
         <p></p>
       )}
       <div>
-        {token ? <h1>Your Top Artists</h1> : <p></p>}
+        {token ? <h1 className="subtitle">Your Top Artists</h1> : <p></p>}
         {token ? (
           <div>
-            <h3 className="subtitle">3 Months</h3>
+            <h3 className="time-frame">3 Months</h3>
             <ul className="song-list">
               {topShortArtists.map((artist) => (
                 <div className="recent-songs" key={artist.id}>
@@ -333,7 +336,7 @@ const App = () => {
         )}
         {token ? (
           <div>
-            <h3 className="subtitle">6 Months</h3>
+            <h3 className="time-frame">6 Months</h3>
             <ul className="song-list">
               {topMediumArtists.map((artist) => (
                 <div className="recent-songs" key={artist.id}>
@@ -354,7 +357,7 @@ const App = () => {
         )}
         {token ? (
           <div>
-            <h3 className="subtitle">12 Months</h3>
+            <h3 className="time-frame">12 Months</h3>
             <ul className="song-list">
               {topLongArtists.map((artist) => (
                 <div className="recent-songs" key={artist.id}>
@@ -375,13 +378,15 @@ const App = () => {
         )}
       </div>
       {token ? (
-        <div>
+        <div className="playlist-wrapper">
           <p className="create-playlist-desc">
             Click this button to create a custom playlist based on your top
             listened to artists over the past 3 months! This will affect your
             real Spotify account.
           </p>
-          <button onClick={createPlaylist}>Create playlist!</button>
+          <button onClick={createPlaylist} className="create-playlist">
+            Create playlist!
+          </button>
         </div>
       ) : (
         <p></p>
