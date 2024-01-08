@@ -58,7 +58,7 @@ export default function App() {
         }
       }
     }
-  }, []);
+  });
 
   const refreshAccessToken = async () => {
     const refreshToken = window.localStorage.getItem("refreshToken");
