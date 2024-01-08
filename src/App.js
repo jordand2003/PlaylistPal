@@ -19,6 +19,7 @@ export default function App() {
   const [topTracks, setTopTracks] = useState([]);
   const [user, setUser] = useState(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const hash = window.location.hash;
 
