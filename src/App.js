@@ -91,17 +91,11 @@ export default function App() {
   };
 
   const logout = () => {
-    Object.keys(localStorage).forEach((key) => {
-      if (key.startsWith("spotify")) {
-        localStorage.removeItem(key);
-      }
-    });
-
+    setToken("");
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("expiresIn");
+    window.localStorage.removeItem("refreshToken");
     setUser(null);
-
-    window.location.replace(
-      `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`
-    );
   };
 
   const fetchRecentlyPlayed = async () => {
