@@ -96,7 +96,7 @@ export default function App() {
     window.localStorage.removeItem("expiresIn");
     window.localStorage.removeItem("refreshToken");
     setUser(null);
-    window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
+    window.location.replace = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
   };
 
   const fetchRecentlyPlayed = async () => {
