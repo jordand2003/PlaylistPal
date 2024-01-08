@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+import React from "react";
 
 export default function App() {
   const CLIENT_ID = "63364e9f707f4451b254e9de4459c7b4";
