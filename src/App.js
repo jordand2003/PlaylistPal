@@ -96,6 +96,7 @@ export default function App() {
     window.localStorage.removeItem("expiresIn");
     window.localStorage.removeItem("refreshToken");
     setUser(null);
+    window.location.reload(true);
   };
 
   const fetchRecentlyPlayed = async () => {
