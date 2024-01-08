@@ -5,7 +5,7 @@ import React from "react";
 
 export default function App() {
   const CLIENT_ID = "63364e9f707f4451b254e9de4459c7b4";
-  const REDIRECT_URI = "http://localhost:3000";
+  const REDIRECT_URI = "https://moonlit-froyo-66dfcd.netlify.app";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
   const RESPONSE_TYPE = "token";
