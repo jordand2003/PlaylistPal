@@ -3,10 +3,10 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .app {
-  max-width: 800px;
   margin: auto;
   padding: 20px;
 }
@@ -32,7 +32,7 @@
   justify-content: center;
   text-align: center;
   text-decoration: none;
-  margin-top: 20px;
+  margin-right: auto;
   font-size: 20px;
 }
 
@@ -52,7 +52,7 @@
 
 .song-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   list-style: none;
   padding: 0;
   gap: 20px;
@@ -103,7 +103,7 @@
 }
 
 .create-playlist-desc {
-  width: 500px;
+  width: 700px;
   font-size: 17px;
   margin-right: auto;
   padding: 15px;

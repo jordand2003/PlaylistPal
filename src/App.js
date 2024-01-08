@@ -103,7 +103,7 @@ export default function App() {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            limit: "15",
+            limit: "17",
           },
         }
       );
@@ -213,7 +213,7 @@ export default function App() {
       const createPlaylistResponse = await axios.post(
         `https://api.spotify.com/v1/users/${userId}/playlists`,
         {
-          name: "Custom Playlist",
+          name: "Your TuneTrends Playlist",
           public: true,
         },
         {
@@ -275,7 +275,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="nav">
-        <h1 className="title">Playlist Buddy!</h1>
+        <h1 className="title">Tune Trends</h1>
         {!token && (
           <p className="desc">
             Please connect your spotify account to access features such as
@@ -303,11 +303,13 @@ export default function App() {
           {recentlyPlayed.map((song) => (
             <div className="recent-songs">
               <li className="single-song" key={song.track.id}>
-                <img
-                  className="album-cover"
-                  src={song.track.album.images[0].url}
-                  alt=""
-                />
+                <a href={song.track.album.external_urls.spotify}>
+                  <img
+                    className="album-cover"
+                    src={song.track.album.images[0].url}
+                    alt=""
+                  />
+                </a>
                 <h2 className="song-title">{song.track.name}</h2>
               </li>
             </div>
@@ -325,11 +327,13 @@ export default function App() {
               {topShortArtists.map((artist) => (
                 <div className="recent-songs" key={artist.id}>
                   <li className="single-song">
-                    <img
-                      className="album-cover"
-                      src={artist.images[0].url}
-                      alt={artist.name}
-                    />
+                    <a href={artist.external_urls.spotify}>
+                      <img
+                        className="album-cover"
+                        src={artist.images[0].url}
+                        alt={artist.name}
+                      />{" "}
+                    </a>
                     <h2 className="song-title">{artist.name}</h2>
                   </li>
                 </div>
@@ -346,11 +350,13 @@ export default function App() {
               {topMediumArtists.map((artist) => (
                 <div className="recent-songs" key={artist.id}>
                   <li className="single-song">
-                    <img
-                      className="album-cover"
-                      src={artist.images[0].url}
-                      alt={artist.name}
-                    />
+                    <a href={artist.external_urls.spotify}>
+                      <img
+                        className="album-cover"
+                        src={artist.images[0].url}
+                        alt={artist.name}
+                      />{" "}
+                    </a>
                     <h2 className="song-title">{artist.name}</h2>
                   </li>
                 </div>
@@ -367,11 +373,13 @@ export default function App() {
               {topLongArtists.map((artist) => (
                 <div className="recent-songs" key={artist.id}>
                   <li className="single-song">
-                    <img
-                      className="album-cover"
-                      src={artist.images[0].url}
-                      alt={artist.name}
-                    />
+                    <a href={artist.external_urls.spotify}>
+                      <img
+                        className="album-cover"
+                        src={artist.images[0].url}
+                        alt={artist.name}
+                      />{" "}
+                    </a>
                     <h2 className="song-title">{artist.name}</h2>
                   </li>
                 </div>
@@ -389,7 +397,11 @@ export default function App() {
             listened to artists over the past 3 months! This will affect your
             real Spotify account.
           </p>
-          <button onClick={createPlaylist} className="create-playlist">
+          <button
+            onClick={createPlaylist}
+            className="create-playlist"
+            href="spotify.com"
+          >
             Create playlist!
           </button>
         </div>
