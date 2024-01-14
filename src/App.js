@@ -5,7 +5,7 @@ import React from "react";
 
 export default function App() {
   const CLIENT_ID = "63364e9f707f4451b254e9de4459c7b4";
-  const REDIRECT_URI = "https://moonlit-froyo-66dfcd.netlify.app";
+  const REDIRECT_URI = "https://moonlit-froyo-66dfcd.netlify.app/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
   const RESPONSE_TYPE = "token";
@@ -20,7 +20,6 @@ export default function App() {
   const [topTracks, setTopTracks] = useState([]);
   const [user, setUser] = useState(null);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const hash = window.location.hash;
 
@@ -58,7 +57,7 @@ export default function App() {
         }
       }
     }
-  });
+  }, []);
 
   const refreshAccessToken = async () => {
     const refreshToken = window.localStorage.getItem("refreshToken");
@@ -94,8 +93,6 @@ export default function App() {
     setToken("");
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("expiresIn");
-    window.localStorage.removeItem("refreshToken");
-    setUser(null);
   };
 
   const fetchRecentlyPlayed = async () => {
@@ -257,7 +254,7 @@ export default function App() {
 
       console.log("Playlist created and tracks added:", addTracksResponse.data);
     } catch (error) {
-      console.error("Error creating custom playlist:", error);
+      console.error("Error creating custom playlist:", error.response.data);
     }
   };
 
